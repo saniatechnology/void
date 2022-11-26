@@ -1,28 +1,33 @@
-import { CMS_NAME, CMS_URL } from '../lib/constants'
+import { CMS_NAME, CMS_URL } from "../lib/constants";
 
 export default function Intro() {
   return (
-    <section className="flex-col md:flex-row flex items-center md:justify-between mt-16 mb-16 md:mb-12">
+    <section className="h-[50vh] py-10 bg-indigo-500 flex-col flex items-center md:justify-between ">
       <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8">
-        Blog.
+        BIEN SÛR
       </h1>
-      <h4 className="text-center md:text-left text-lg mt-5 md:pl-8">
-        A statically generated blog example using{' '}
+
+      <p>Hi, I'm a very very thiq boi and i like to make the musicsss :D</p>
+      <div className="flex flex-row gap-10">
         <a
           href="https://nextjs.org/"
           className="underline hover:text-success duration-200 transition-colors"
         >
-          Next.js
-        </a>{' '}
-        and{' '}
+          Soundcloud
+        </a>
         <a
-          href={CMS_URL}
+          href="https://nextjs.org/"
           className="underline hover:text-success duration-200 transition-colors"
         >
-          {CMS_NAME}
+          Instagram
         </a>
-        .
-      </h4>
+        <a
+          href="https://nextjs.org/"
+          className="underline hover:text-success duration-200 transition-colors"
+        >
+          Twitter
+        </a>
+      </div>
     </section>
-  )
+  );
 }
