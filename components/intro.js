@@ -11,9 +11,10 @@ export default function Intro() {
       className={`px-10 py-10 flex  text-base md:text-3xl tracking-tighter  ${fontDigitalDream.className}`}
     >
       <p>
-        GIRLY DAO / We're a small team that builds software and explores a
-        future of work that's radically softer and sweeter / Follow us to learn
-        more about our first project and how to get involved /{" "}
+        <span className="text-gray-300 bg-black">GIRLY NETWORK</span> / We're a
+        small team that builds software and explores a future of work that's
+        radically softer and sweeter / Follow us to learn more about our first
+        project and how to get involved /{" "}
         <a
           href="https://twitter.com/GirlyDAO"
           className="text-gray-500 hover:text-success duration-200 transition-colors"
