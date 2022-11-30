@@ -23,19 +23,12 @@ export default function Intro() {
         </a>{" "}
         /{" "}
         <a
-          href="https://app.commonground.cg/community/NCTwbWjKE5"
+          href="https://app.commonground.cg/community/NCTwbWjKE5?ref=hpYWNFp7"
           className="text-gray-500 bg-teal-100 hover:text-violet-700 duration-200 transition-colors"
         >
           Common Ground
         </a>{" "}
-        (Team + community chat. Referral link{" "}
-        <a
-          href="https://alpha.commonground.cg/?ref=hpYWNFp7"
-          className="text-gray-500 hover:text-violet-700 duration-200 transition-colors"
-        >
-          HERE
-        </a>{" "}
-        if you need one) /{" "}
+        (Team + community chat) /{" "}
         <a
           href="https://app.wonderverse.xyz/invite/8eXyL8MQALoTYw"
           className="text-gray-500 hover:text-violet-700 duration-200 transition-colors"
