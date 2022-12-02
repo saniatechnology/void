@@ -14,7 +14,8 @@ export default function Intro() {
         Welcome to <span className="text-black bg-yellow-100">GIRLY</span> /
         We're a small tech label building software and exploring a future of
         work that's radically softer and sweeter / Connect with us to learn
-        about our first project and how to get involved /{" "}
+        about our first project and how to get involved / More info coming soon
+        /{" "}
         <a
           href="https://twitter.com/GirlyDAO"
           className="text-gray-500 bg-teal-100 hover:text-violet-700 duration-200 transition-colors"
@@ -28,14 +29,14 @@ export default function Intro() {
         >
           Common Ground
         </a>{" "}
-        (Team + community chat) /{" "}
+        /{" "}
         <a
           href="https://app.wonderverse.xyz/invite/8eXyL8MQALoTYw"
           className="text-gray-500 hover:text-violet-700 duration-200 transition-colors"
         >
           Wonder
         </a>{" "}
-        (Public team tasks) /{" "}
+        /{" "}
         <a
           href="https://github.com/GIRLYDAO"
           className="text-gray-500 hover:text-violet-700 duration-200 transition-colors"
