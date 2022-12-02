@@ -12,9 +12,9 @@ export default function Intro() {
     >
       <p>
         Welcome to <span className="text-black bg-yellow-100">GIRLY</span> /
-        We're a small team that builds software and explores a future of work
-        that's radically softer and sweeter / Connect with us to learn about our
-        first project and how to get involved /{" "}
+        We're a small tech label building software and exploring a future of
+        work that's radically softer and sweeter / Connect with us to learn
+        about our first project and how to get involved /{" "}
         <a
           href="https://twitter.com/GirlyDAO"
           className="text-gray-500 bg-teal-100 hover:text-violet-700 duration-200 transition-colors"
