@@ -7,45 +7,19 @@ const fontDigitalDream = localFont({ src: "../public/Digitaldream.ttf" });
 
 export default function Intro() {
   return (
-    <section
-      className={`px-10 py-10 flex  text-base md:text-3xl tracking-tighter  ${fontDigitalDream.className}`}
-    >
+    <section className={`px-10 py-10 flex  text-base md:text-3xl tracking-tighter  ${fontDigitalDream.className}`}>
       <p>
-        <span className="text-black bg-white">GIRLY</span> is a small tech label
-        exploring a radically softer and sweeter future / First project:{" "}
-        <a
-          href="https://layers.live"
-          className="text-black bg-pink-100 hover:text-pink-500 duration-200 transition-colors"
-        >
-          Layers
+        <span className="text-black bg-white">Softer Systems</span> is a tech label exploring a softer and sweeter future. / First project:{" "}
+        <a href="https://geo.softer.systems" className="text-black bg-pink-100 hover:text-pink-500 duration-200 transition-colors">
+          Geo
         </a>{" "}
         / Connect on:{" "}
-        <a
-          href="https://twitter.com/GirlyDAO"
-          className="text-gray-500 bg-teal-100 hover:text-teal-500 duration-200 transition-colors"
-        >
+        <a href="https://twitter.com/softersystems" className="text-gray-500 bg-teal-100 hover:text-teal-500 duration-200 transition-colors">
           Twitter
         </a>{" "}
         /{" "}
-        <a
-          href="https://app.cg/community/NCTwbWjKE5"
-          className="text-gray-500 bg-teal-100 hover:text-teal-500 duration-200 transition-colors"
-        >
+        <a href="https://app.cg/community/NCTwbWjKE5" className="text-gray-500 bg-teal-100 hover:text-teal-500 duration-200 transition-colors">
           Common Ground
-        </a>{" "}
-        /{" "}
-        <a
-          href="https://app.wonderverse.xyz/invite/8eXyL8MQALoTYw"
-          className="text-gray-500 hover:text-teal-500 duration-200 transition-colors"
-        >
-          Wonder
-        </a>{" "}
-        /{" "}
-        <a
-          href="https://github.com/GIRLYDAO"
-          className="text-gray-500 hover:text-teal-500 duration-200 transition-colors"
-        >
-          GitHub
         </a>{" "}
         / IRL :p
       </p>
