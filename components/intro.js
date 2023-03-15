@@ -20,8 +20,7 @@ export default function Intro() {
         /{" "}
         <a href="https://app.cg/community/NCTwbWjKE5" className="text-gray-500 bg-teal-100 hover:text-teal-500 duration-200 transition-colors">
           Common Ground
-        </a>{" "}
-        / IRL :p
+        </a>
       </p>
     </section>
   );
