@@ -6,7 +6,7 @@ export default function Personal({ preview, allPosts }) {
   return (
     <Layout preview={preview}>
       <Head>
-        <title>Softer Systems</title>
+        <title>Sania Garcia</title>
       </Head>
       <Container>
         <section className="md:w-[50%] my-20 py-10 px-5 sm:px-10 flex flex-col justify-between gap-5 text-left font-courier">
