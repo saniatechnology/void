@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Container from "../../../components/container";
 import Layout from "../../../components/layout";
 import Head from "next/head";
-import { cyberkwinFeed } from "../../../mock/feedContent";
+import { altFeed } from "../../../mock/feedContent";
 // import generateRssFeed from "../../../lib/generateRSSFeed";
 
 export default function Personal({ preview, allPosts }) {
@@ -10,7 +10,7 @@ export default function Personal({ preview, allPosts }) {
 
   // useEffect(() => {
   //   async function fetchFeed() {
-  //     const xml = await generateRssFeed("cyberkwin", cyberkwinFeed);
+  //     const xml = await generateRssFeed("cyberkwin", altFeed);
   //     console.log("TEST xml", xml);
 
   //     // setFeed(data);
@@ -37,7 +37,7 @@ export default function Personal({ preview, allPosts }) {
         </nav>
         <h1 className="w-full px-5 text-xl text-left bg-white">cyberkwin</h1>
         <div className="flex flex-col justify-between">
-          {cyberkwinFeed.map((post) => (
+          {altFeed.map((post) => (
             <div className="w-full flex flex-col gap-3 p-5 border-b-2 border-gray-400/50">
               <p>{post.content}</p>
               <div className="w-full flex justify-between text-gray-500">

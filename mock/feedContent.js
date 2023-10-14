@@ -1,4 +1,4 @@
-export const feedContent = [
+export const cyberkwinFeed = [
   {
     date: "01/02/2023",
     author: "cyberkwin",
@@ -13,5 +13,23 @@ export const feedContent = [
     date: "03/02/2023",
     author: "cyberkwin",
     content: "Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  },
+];
+
+export const altFeed = [
+  {
+    date: "01/02/2023",
+    author: "cyberkwin",
+    content: "Still depressed i guess. Dunno.",
+  },
+  {
+    date: "02/02/2023",
+    author: "cyberkwin",
+    content: "Now I'm angry I guess.",
+  },
+  {
+    date: "03/02/2023",
+    author: "cyberkwin",
+    content: "This is an alternative to Twitter. But it's not supposed to be a straight up Twitter clone. It's different in a bunch of ways",
   },
 ];

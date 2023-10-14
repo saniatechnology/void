@@ -27,7 +27,7 @@ export default function LandingPage() {
           <h2 className="text-xl">Geo</h2>
           {/* <h3 className="opacity-50">Mobile app</h3> */}
         </div>
-        <p>A collaborative and modular maps app.</p>
+        <p>A collaborative maps app.</p>
       </ProjectContainer>
       <ProjectContainer href="/rst">
         <div className="flex justify-between items-center">
