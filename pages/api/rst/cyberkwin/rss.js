@@ -26,7 +26,7 @@ async function generateRssFeed(id, allPosts) {
   allPosts.forEach((post) => {
     const slug = post.content.split(" ").slice(0, 5).join("-");
     feed.addItem({
-      //   title: post.title,
+      title: "RST: cyberkwin",
       id: `${site_url}/${slug}`,
       link: `${site_url}/${slug}`,
       description: post.content,
