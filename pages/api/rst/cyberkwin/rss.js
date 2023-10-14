@@ -1,16 +1,13 @@
-// import fs from "fs";
 import { Feed } from "feed";
+import { cyberkwinFeed } from "../../../../mock/feedContent";
+// import type { NextApiRequest, NextApiResponse } from 'next'
 
-// const getStaticProps = (feed) => {
-//   fs.writeFileSync("./public/rss.xml", feed.rss2());
-// };
-
-export default async function generateRssFeed(id, feedContent) {
-  const site_url = `localhost:3000/rst/${id}`;
+async function generateRssFeed(id, allPosts) {
+  const site_url = `softer.systems/rst/${id}`;
 
   const feedOptions = {
     title: `RST: ${id}`,
-    description: "Welcome to this blog posts!",
+    description: "Real Simple Tweeter",
     id: site_url,
     link: site_url,
     //  image: `${site_url}/logo.png`,
@@ -19,14 +16,14 @@ export default async function generateRssFeed(id, feedContent) {
     //  generator: 'Feed for Node.js',
     feedLinks: {
       rss2: `${site_url}/rss`,
-      rss2: `${site_url}/atom`,
-      json: `${site_url}/json`,
+      // rss2: `${site_url}/atom`,
+      // json: `${site_url}/json`,
     },
   };
 
   const feed = new Feed(feedOptions);
 
-  feedContent.forEach((post) => {
+  allPosts.forEach((post) => {
     const slug = post.content.split(" ").slice(0, 5).join("-");
     feed.addItem({
       //   title: post.title,
@@ -37,7 +34,13 @@ export default async function generateRssFeed(id, feedContent) {
     });
   });
 
-  // getStaticProps(feed);
-
+  // Return the XML string.
   return feed.rss2();
+}
+
+export default async function handler(req, res) {
+  const xml = await generateRssFeed("cyberkwin", cyberkwinFeed);
+
+  res.setHeader("Content-Type", "application/xml");
+  res.send(xml);
 }
