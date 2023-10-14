@@ -6,7 +6,7 @@ export default function Layout({ children }) {
     <>
       <Meta />
       <div className="min-h-screen bg-gray-300">
-        <main>{children}</main>
+        <main className="w-full flex flex-col items-center">{children}</main>
       </div>
     </>
   );
