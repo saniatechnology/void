@@ -2,9 +2,9 @@ import Container from "../components/container";
 import Layout from "../components/layout";
 import Head from "next/head";
 
-export default function Personal({ preview, allPosts }) {
+export default function Personal() {
   return (
-    <Layout preview={preview}>
+    <Layout>
       <Head>
         <title>Sania Garcia</title>
       </Head>

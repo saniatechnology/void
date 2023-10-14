@@ -3,9 +3,9 @@ import LandingPage from "../components/landing-page";
 import Layout from "../components/layout";
 import Head from "next/head";
 
-export default function Index({ preview, allPosts }) {
+export default function Index() {
   return (
-    <Layout preview={preview}>
+    <Layout>
       <Head>
         <title>Softer Systems</title>
       </Head>
