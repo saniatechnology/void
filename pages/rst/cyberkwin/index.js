@@ -6,6 +6,7 @@ import Layout from "../../../components/layout";
 
 export default function rstFeed() {
   const [feed, setFeed] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     async function fetchFeed() {
@@ -16,10 +17,29 @@ export default function rstFeed() {
     fetchFeed();
   }, []);
 
+  useEffect(() => {
+    console.log("TEST feed", feed);
+  }, [feed]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent the default form submission behavior.
+
+    if (inputValue === "") return;
+
+    const newPost = {
+      content: inputValue,
+      date: new Date().toLocaleDateString(),
+      author: "cyberkwin",
+    };
+
+    setFeed((prev) => [newPost, ...prev]);
+    setInputValue("");
+  };
+
   return (
     <Layout>
       <Head>
-        <title>RST: cyberkwin</title>
+        <title>cyberkwin</title>
       </Head>
       <Container>
         <nav className="flex gap-5 px-5">
@@ -39,7 +59,9 @@ export default function rstFeed() {
             RSS
           </a>
         </div>
-
+        <form onSubmit={handleSubmit}>
+          <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} name="new-post" type="text" placeholder="New" className="w-full px-5 py-3 border-2 border-gray-400/50 bg-inherit" />
+        </form>
         <div className="flex flex-col justify-between">
           {feed.map((post) => (
             <div className="w-full flex flex-col gap-3 p-5 border-b-2 border-gray-400/50">
