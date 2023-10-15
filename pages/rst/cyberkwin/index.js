@@ -40,6 +40,7 @@ export default function rstFeed() {
     <Layout>
       <Head>
         <title>cyberkwin</title>
+        <link rel="alternate" type="application/rss+xml" href="https://softer.systems/api/rst/cyberkwin/rss" title="The RST of cyberkwin." />
       </Head>
       <Container>
         <nav className="flex gap-5 px-5">

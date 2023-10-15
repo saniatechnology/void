@@ -22,7 +22,7 @@ export default function Personal({ preview, allPosts }) {
   return (
     <Layout preview={preview}>
       <Head>
-        <title>Tweeter Feed: cyberkwin</title>
+        <title>RST: cyberkwin</title>
       </Head>
       <Container>
         <nav className="flex gap-5 px-5">

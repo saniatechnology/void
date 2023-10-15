@@ -3,7 +3,7 @@ import { cyberkwinFeed } from "../../../../mock/feedContent";
 // import type { NextApiRequest, NextApiResponse } from 'next'
 
 async function generateRssFeed(id, allPosts) {
-  const site_url = `https://softer.systems/api/rst/${id}`;
+  const site_url = `https://softer.systems/rst/${id}`;
 
   const feedOptions = {
     title: `RST: ${id}`,
