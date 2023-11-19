@@ -64,8 +64,8 @@ export default function rstFeed() {
           <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} name="new-post" type="text" placeholder="New" className="w-full px-5 py-3 border-2 border-gray-400/50 bg-inherit focus:outline-none" />
         </form>
         <div className="flex flex-col justify-between">
-          {posts.map((post) => (
-            <PostContainer post={post} />
+          {posts.map((post, i) => (
+            <PostContainer post={post} setPosts={setPosts} key={i} />
           ))}
         </div>
       </Container>
