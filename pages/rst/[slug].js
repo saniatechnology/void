@@ -17,7 +17,7 @@ export default function rstFeed() {
   const fetchFeed = async () => {
     const slug = router.query.slug;
     if (!slug) return;
-    const result = await fetch(`http://localhost:3000/api/rst/${slug}`).then((res) => res.json());
+    const result = await fetch(`/api/rst/${slug}`).then((res) => res.json());
     setUsername(slug);
     setPosts(result.posts);
   };
@@ -27,7 +27,7 @@ export default function rstFeed() {
 
     if (inputValue === "") return;
 
-    const result = await fetch(`http://localhost:3000/api/rst/post?username=${username}&content=${inputValue}`);
+    const result = await fetch(`/api/rst/post?username=${username}&content=${inputValue}`);
     console.log("TEST result", result);
     if (result.ok) {
       fetchFeed();

@@ -6,14 +6,13 @@ import { useRouter } from "next/router";
 
 export default function Personal() {
   const [posts, setPosts] = useState([]);
-  const router = useRouter();
 
   useEffect(() => {
     fetchFeed();
   }, []);
 
   const fetchFeed = async () => {
-    const result = await fetch("http://localhost:3000/api/rst/latest").then((res) => res.json());
+    const result = await fetch("/api/rst/latest").then((res) => res.json());
     setPosts(result.posts);
   };
 
