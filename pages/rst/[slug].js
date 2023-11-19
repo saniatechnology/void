@@ -1,45 +1,44 @@
 import { useEffect, useState } from "react";
-import { cyberkwinFeed } from "../../../mock/feedContent";
+import { useRouter } from "next/router";
 import Head from "next/head";
-import Container from "../../../components/container";
-import Layout from "../../../components/layout";
+import Container from "../../components/container";
+import Layout from "../../components/layout";
 
 export default function rstFeed() {
-  const [feed, setFeed] = useState([]);
+  const [username, setUsername] = useState("");
+  const [posts, setPosts] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
-    async function fetchFeed() {
-      const allPosts = cyberkwinFeed;
-      setFeed(allPosts);
-    }
-
     fetchFeed();
-  }, []);
+  }, [router.query.slug]);
 
-  useEffect(() => {
-    console.log("TEST feed", feed);
-  }, [feed]);
+  const fetchFeed = async () => {
+    const slug = router.query.slug;
+    if (!slug) return;
+    const result = await fetch(`http://localhost:3000/api/rst/${slug}`).then((res) => res.json());
+    setUsername(slug);
+    setPosts(result.posts);
+  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior.
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     if (inputValue === "") return;
 
-    const newPost = {
-      content: inputValue,
-      date: new Date().toLocaleDateString(),
-      author: "cyberkwin",
-    };
-
-    setFeed((prev) => [newPost, ...prev]);
-    setInputValue("");
+    const result = await fetch(`http://localhost:3000/api/rst/post?username=${username}&content=${inputValue}`);
+    console.log("TEST result", result);
+    if (result.ok) {
+      fetchFeed();
+      setInputValue("");
+    }
   };
 
   return (
     <Layout>
       <Head>
-        <title>cyberkwin</title>
+        <title>{username}</title>
         <link rel="alternate" type="application/rss+xml" href="https://softer.systems/api/rst/cyberkwin/rss" title="The RST of cyberkwin." />
       </Head>
       <Container>
@@ -54,7 +53,7 @@ export default function rstFeed() {
           <span className="text-gray-500 opacity-50">{">"}</span>
         </nav>
         <div className="flex justify-between items-center w-full px-5 bg-white">
-          <h1 className="text-xl">RST: cyberkwin</h1>
+          <h1 className="text-xl">RST{username && `/${username}`}</h1>
 
           <a href="/api/rst/cyberkwin/rss" className=" text-gray-500 opacity-50 hover:opacity-70 duration-200 transition-colors">
             RSS
@@ -64,12 +63,14 @@ export default function rstFeed() {
           <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} name="new-post" type="text" placeholder="New" className="w-full px-5 py-3 border-2 border-gray-400/50 bg-inherit" />
         </form>
         <div className="flex flex-col justify-between">
-          {feed.map((post) => (
-            <div className="w-full flex flex-col gap-3 p-5 border-b-2 border-gray-400/50">
+          {posts.map((post) => (
+            <div className="w-full flex flex-col gap-3 p-5 border-b-2 border-gray-400/60">
               <p>{post.content}</p>
-              <div className="w-full flex justify-between text-gray-500">
-                <p>{post.author}</p>
-                <p>{post.date}</p>
+              <div className="w-full flex justify-between text-gray-500/50">
+                <a href={`rst/${post.username}`} className="hover:text-gray-500/80">
+                  {post.username}
+                </a>
+                <p>{new Date(Number(post.date)).toLocaleString()}</p>
               </div>
             </div>
           ))}

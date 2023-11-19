@@ -1,8 +1,22 @@
+import { useEffect, useState } from "react";
 import Container from "../../components/container";
 import Layout from "../../components/layout";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 export default function Personal() {
+  const [posts, setPosts] = useState([]);
+  const router = useRouter();
+
+  useEffect(() => {
+    fetchFeed();
+  }, []);
+
+  const fetchFeed = async () => {
+    const result = await fetch("http://localhost:3000/api/rst/latest").then((res) => res.json());
+    setPosts(result.posts);
+  };
+
   return (
     <Layout>
       <Head>
@@ -17,11 +31,19 @@ export default function Personal() {
         </nav>
         <h1 className="w-full px-5 text-xl text-left bg-white">RST (Really Simple Tweeter)</h1>
         <h2 className="w-full px-5">is a social software based on RSS.</h2>
-        <h3 className="w-full px-5 text-left">Public feeds:</h3>
-        <div className="flex flex-row gap-10 flex-wrap w-full px-5">
-          <a href="/rst/cyberkwin" className="underline opacity-50 hover:opacity-70 duration-200 transition-colors">
-            cyberkwin
-          </a>
+        <h3 className="w-full px-5 text-left">Latest public tweets on RST:</h3>
+        <div className="flex flex-col justify-between">
+          {posts.map((post) => (
+            <div className="w-full flex flex-col gap-3 p-5 border-b-2 border-gray-400/50">
+              <p>{post.content}</p>
+              <div className="w-full flex justify-between text-gray-500/60">
+                <a href={`rst/${post.username}`} className="hover:text-gray-500/80">
+                  {post.username}
+                </a>
+                <p>{new Date(Number(post.date)).toLocaleString()}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </Container>
     </Layout>

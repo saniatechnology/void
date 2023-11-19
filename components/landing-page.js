@@ -12,22 +12,20 @@ export default function LandingPage() {
   return (
     <>
       <h1 className="w-full px-5 text-xl text-left bg-white">Softer Systems</h1>
-      <p className="px-5">is a tech label exploring a cuter future.</p>
-      <h3 className="w-full px-5 text-left">Live:</h3>
+      <p className="px-5">
+        is a tech label by{" "}
+        <a href="/sania" className="underline opacity-50 hover:opacity-70 duration-200 transition-colors">
+          Sania García
+        </a>
+        .
+      </p>
+      <h3 className="w-full px-5 text-left">Projects (WIP):</h3>
       <ProjectContainer href="https://biensur.online" target="_blank">
         <div className="flex justify-between items-center	">
           <h2 className="text-xl">Bien Sûr</h2>
           {/* <h3 className="opacity-50">Musician's site</h3> */}
         </div>
         <p>A digital contact card for a musician.</p>
-      </ProjectContainer>
-      <h3 className="w-full px-5 text-left">WIP:</h3>
-      <ProjectContainer href="https://geo.softer.systems" target="_blank">
-        <div className="flex justify-between items-center">
-          <h2 className="text-xl">Geo</h2>
-          {/* <h3 className="opacity-50">Mobile app</h3> */}
-        </div>
-        <p>A collaborative maps app.</p>
       </ProjectContainer>
       <ProjectContainer href="/rst">
         <div className="flex justify-between items-center">
@@ -36,10 +34,13 @@ export default function LandingPage() {
         </div>
         <p>Intimate-scale micro blogging.</p>
       </ProjectContainer>
-      <h3 className="w-full px-5 text-left">By:</h3>
-      <a href="/sania" className="px-5 underline opacity-50 hover:opacity-70 duration-200 transition-colors">
-        Sania García
-      </a>
+      <ProjectContainer href="https://geo.softer.systems" target="_blank">
+        <div className="flex justify-between items-center">
+          <h2 className="text-xl">Geo</h2>
+          {/* <h3 className="opacity-50">Mobile app</h3> */}
+        </div>
+        <p>A collaborative maps app.</p>
+      </ProjectContainer>
     </>
   );
 }
