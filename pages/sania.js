@@ -28,7 +28,7 @@ export default function Personal() {
           <a href="https://www.lensfrens.xyz/sania.lens" target="_blank" className="underline opacity-50 hover:opacity-70 duration-200 transition-colors">
             Lens
           </a>
-          <a href="https://twitter.com/SaniaGarciaDev" target="_blank" className="underline opacity-50 hover:opacity-70 duration-200 transition-colors">
+          <a href="https://x.com/cyberkwin" target="_blank" className="underline opacity-50 hover:opacity-70 duration-200 transition-colors">
             X
           </a>
           <a href="mailto:sania@softer.systems" target="_blank" className="underline opacity-50 hover:opacity-70 duration-200 transition-colors">

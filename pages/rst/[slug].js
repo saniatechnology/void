@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Container from "../../components/container";
 import Layout from "../../components/layout";
+import PostContainer from "../../components/post-container";
 
 export default function rstFeed() {
   const [username, setUsername] = useState("");
@@ -28,7 +29,7 @@ export default function rstFeed() {
     if (inputValue === "") return;
 
     const result = await fetch(`/api/rst/post?username=${username}&content=${inputValue}`);
-    console.log("TEST result", result);
+    // console.log("TEST result", result);
     if (result.ok) {
       fetchFeed();
       setInputValue("");
@@ -60,19 +61,11 @@ export default function rstFeed() {
           </a>
         </div>
         <form onSubmit={handleSubmit}>
-          <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} name="new-post" type="text" placeholder="New" className="w-full px-5 py-3 border-2 border-gray-400/50 bg-inherit" />
+          <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} name="new-post" type="text" placeholder="New" className="w-full px-5 py-3 border-2 border-gray-400/50 bg-inherit focus:outline-none" />
         </form>
         <div className="flex flex-col justify-between">
           {posts.map((post) => (
-            <div className="w-full flex flex-col gap-3 p-5 border-b-2 border-gray-400/60">
-              <p>{post.content}</p>
-              <div className="w-full flex justify-between text-gray-500/50">
-                <a href={`rst/${post.username}`} className="hover:text-gray-500/80">
-                  {post.username}
-                </a>
-                <p>{new Date(Number(post.date)).toLocaleString()}</p>
-              </div>
-            </div>
+            <PostContainer post={post} />
           ))}
         </div>
       </Container>
