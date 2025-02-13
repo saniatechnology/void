@@ -48,7 +48,7 @@ export default function PostContainer({ post, setPosts }) {
   return (
     <div className={"w-full flex flex-col gap-3 py-5 border-b-2 border-gray-400/60 cursor-default"}>
       <div className="w-full flex justify-between px-5 text-gray-500/50">
-        <a href={`rst/${post.username}`} className="hover:text-gray-500/80" disabled>
+        <a href={`u/${post.username}`} className="hover:text-gray-500/80" disabled>
           {post.username}
         </a>
         <p>{new Date(Number(post.date)).toLocaleString()}</p>
