@@ -2,18 +2,16 @@ import { useEffect, useState } from "react";
 import Container from "../components/container";
 import Layout from "../components/layout";
 import Head from "next/head";
-import PostContainer from "../components/post-container";
 
 export default function Index() {
-  const [posts, setPosts] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
-  useEffect(() => {
-    fetchFeed();
-  }, []);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  const fetchFeed = async () => {
-    const result = await fetch("/api/rst/latest").then((res) => res.json());
-    setPosts(result.posts);
+    if (inputValue === "") return;
+
+    window.location.href = `/u/${inputValue}`;
   };
 
   return (
@@ -23,13 +21,9 @@ export default function Index() {
       </Head>
       <Container>
         <h1 className="w-full px-5 text-xl text-left bg-white">Void</h1>
-        <h2 className="w-full px-5">is a micro-journaling software based on RSS.</h2>
-        <h3 className="w-full px-5 text-left">Example posts on Void:</h3>
-        <div className="flex flex-col justify-between">
-          {posts.map((post) => (
-            <PostContainer post={post} />
-          ))}
-        </div>
+        <form onSubmit={handleSubmit}>
+          <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} name="new-post" type="text" placeholder="Username" className="w-full px-5 py-3 border-2 border-gray-400/50 bg-inherit focus:outline-none" />
+        </form>
       </Container>
     </Layout>
   );
