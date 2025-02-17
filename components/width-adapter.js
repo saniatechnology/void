@@ -1,3 +1,3 @@
 export default function WidthAdapter({ children }) {
-  return <div className="w-full px-5 md:px-[10rem]">{children}</div>;
+  return <div className="w-full max-w-[40rem] px-5 mx-auto">{children}</div>;
 }

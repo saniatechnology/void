@@ -13,6 +13,7 @@ export default function rstFeed() {
   const [username, setUsername] = useState("");
   const [posts, setPosts] = useState([]);
   const [showPostCreator, setShowPostCreator] = useState(false);
+  const [isHovered, setIsHovered] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -48,12 +49,14 @@ export default function rstFeed() {
         </nav>
       </WidthAdapter>
 
-      {showPostCreator && <PostCreator setShowPostCreator={setShowPostCreator} username={username} />}
+      {showPostCreator && <PostCreator setShowPostCreator={setShowPostCreator} fetchFeed={fetchFeed} username={username} />}
 
       <div className="flex flex-col w-full h-full bg-[#CACACA]">
-        <button onClick={() => setShowPostCreator(!showPostCreator)} className="flex justify-center w-full h-[70px] hover:bg-[#FFEA63] focus:outline-none text-[#6E6E6E] bg-[#CACACA] border-b border-[#6E6E6E] hover:border-[#CACACA] flex-shrink-0">
-          <Image src={addDark} alt="My SVG Image" width={30} height={30} />
-        </button>
+        <div className={`flex justify-center items-center w-full h-[70px] focus:outline-none bg-[#CACACA] border-b border-[#6E6E6E] flex-shrink-0 ${isHovered === "add" ? " bg-[#FFEA63] border-[#CACACA] " : ""}`}>
+          <button onClick={() => setShowPostCreator(true)} onMouseEnter={() => setIsHovered("add")} onMouseLeave={() => setIsHovered(null)} className="h-fit hover:text-gray-500/80">
+            <Image src={addDark} alt="My SVG Image" width={30} height={30} />
+          </button>
+        </div>
         {posts.map((post, i) => (
           <PostContainer post={post} setPosts={setPosts} key={i} />
         ))}
