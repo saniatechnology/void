@@ -1,5 +1,6 @@
 import { set } from "date-fns";
 import { use, useEffect, useRef, useState } from "react";
+import WidthAdapter from "./width-adapter";
 
 export default function PostContainer({ post, setPosts }) {
   const [content, setContent] = useState("");
@@ -46,22 +47,26 @@ export default function PostContainer({ post, setPosts }) {
   };
 
   return (
-    <div className={"w-full flex flex-col gap-3 py-5 border-b-2 border-gray-400/60 cursor-default"}>
-      <div className="w-full flex justify-between px-5 text-gray-500/50">
-        <a href={`u/${post.username}`} className="hover:text-gray-500/80" disabled>
-          {post.username}
-        </a>
-        <p>{new Date(Number(post.date)).toLocaleString()}</p>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <textarea ref={textareaRef} rows="1" value={content} onChange={handleChange} wrap="soft" className={"w-full p-5 bg-white/20 border-none focus:outline-none resize-none"}></textarea>
-      </form>
-      <div className="w-full flex justify-end px-5 text-gray-500/50">
-        {/* <button className="hover:text-gray-500/80">Reply</button> */}
-        <button onClick={handleDelete} className="hover:text-gray-500/80">
-          Delete
-        </button>
-      </div>
+    <div className="w-full flex flex-col justify-between gap-5 bg-[#CACACA]  border-b border-[#6E6E6E]">
+      <WidthAdapter>
+        <div className={"w-full flex flex-col gap-3 py-5  cursor-default"}>
+          <div className="w-full flex justify-between px-5 text-[#6E6E6E]">
+            <a href={`u/${post.username}`} className="hover:text-gray-500/80" disabled>
+              {post.username}
+            </a>
+            <p>{new Date(Number(post.date)).toLocaleString()}</p>
+          </div>
+          <form onSubmit={handleSubmit}>
+            <textarea ref={textareaRef} rows="1" value={content} onChange={handleChange} wrap="soft" className={"w-full p-5 bg-[#E9E7E7] border-none focus:outline-none resize-none"}></textarea>
+          </form>
+          <div className="w-full flex justify-end px-5 text-[#6E6E6E]">
+            {/* <button className="hover:text-gray-500/80">Reply</button> */}
+            <button onClick={handleDelete} className="hover:text-gray-500/80">
+              Delete
+            </button>
+          </div>
+        </div>
+      </WidthAdapter>
     </div>
   );
 }
