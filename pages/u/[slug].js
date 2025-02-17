@@ -11,6 +11,7 @@ import addDark from "../../public/icons/add-dark.svg";
 
 export default function rstFeed() {
   const [username, setUsername] = useState("");
+  const [currentDateTime, setCurrentDateTime] = useState(null);
   const [posts, setPosts] = useState([]);
   const [showPostCreator, setShowPostCreator] = useState(false);
   const [isHovered, setIsHovered] = useState(null);
@@ -19,6 +20,25 @@ export default function rstFeed() {
   useEffect(() => {
     fetchFeed();
   }, [router.query.slug]);
+
+  useEffect(() => {
+    const updateDateTime = () => {
+      setCurrentDateTime(new Date());
+    };
+
+    updateDateTime();
+
+    const now = new Date();
+    const delay = 60000 - (now.getSeconds() * 1000 + now.getMilliseconds());
+
+    const timeout = setTimeout(() => {
+      updateDateTime();
+      const interval = setInterval(updateDateTime, 60000);
+      return () => clearInterval(interval);
+    }, delay);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   const fetchFeed = async () => {
     const slug = router.query.slug;
@@ -43,9 +63,10 @@ export default function rstFeed() {
             <span className="">{">"}</span>
             <span className="">{username}</span>
           </div>
-          <a href="/api/rst/cyberkwin/rss" className="">
+          <div>{currentDateTime ? currentDateTime.toLocaleDateString() + ", " + currentDateTime.toLocaleTimeString().slice(0, -3) : "Loading..."}</div>
+          {/* <a href="/api/rst/cyberkwin/rss" className="">
             RSS
-          </a>
+          </a> */}
         </nav>
       </WidthAdapter>
 

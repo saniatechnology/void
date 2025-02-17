@@ -52,7 +52,7 @@ export default function PostContainer({ post, setPosts }) {
         <div className={"w-full flex flex-col gap-3 pt-5 pb-6 cursor-default"}>
           <div className="w-full flex justify-between px-5 text-[#6E6E6E]">
             <p>{post.username}</p>
-            <p>{new Date(Number(post.date)).toLocaleString()}</p>
+            <p>{new Date(Number(post.date)).toLocaleString().slice(0, -3)}</p>
           </div>
           <div className={"w-full p-5 bg-[#E9E7E7]"}>{post.content}</div>
           {/* <form onSubmit={handleSubmit}>
