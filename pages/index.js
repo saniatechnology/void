@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Container from "../components/container";
+import Container from "../components/width-adapter";
 import Layout from "../components/layout";
 import Head from "next/head";
 
