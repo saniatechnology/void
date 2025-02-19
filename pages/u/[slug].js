@@ -11,41 +11,25 @@ import addDark from "../../public/icons/add-dark.svg";
 
 export default function rstFeed() {
   const [username, setUsername] = useState("");
-  const [currentDateTime, setCurrentDateTime] = useState(null);
   const [posts, setPosts] = useState([]);
   const [showPostCreator, setShowPostCreator] = useState(false);
-  const [isHovered, setIsHovered] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
     fetchFeed();
   }, [router.query.slug]);
 
-  useEffect(() => {
-    const updateDateTime = () => {
-      setCurrentDateTime(new Date());
-    };
-
-    updateDateTime();
-
-    const now = new Date();
-    const delay = 60000 - (now.getSeconds() * 1000 + now.getMilliseconds());
-
-    const timeout = setTimeout(() => {
-      updateDateTime();
-      const interval = setInterval(updateDateTime, 60000);
-      return () => clearInterval(interval);
-    }, delay);
-
-    return () => clearTimeout(timeout);
-  }, []);
-
   const fetchFeed = async () => {
     const slug = router.query.slug;
     if (!slug) return;
-    const result = await fetch(`/api/rst/${slug}`).then((res) => res.json());
+    const result = await fetch(`/api/rst/${slug}`);
+    const data = await result.json();
+
+    if (!result.ok) {
+      return "There was an error.";
+    }
     setUsername(slug);
-    setPosts(result.posts);
+    setPosts(data.posts);
   };
 
   return (
@@ -63,21 +47,18 @@ export default function rstFeed() {
             <span className="">{">"}</span>
             <span className="">{username}</span>
           </div>
-          <div>{currentDateTime ? currentDateTime.toLocaleDateString() + ", " + currentDateTime.toLocaleTimeString().slice(0, -3) : "Loading..."}</div>
-          {/* <a href="/api/rst/cyberkwin/rss" className="">
+          <a href="/api/rst/cyberkwin/rss" className="">
             RSS
-          </a> */}
+          </a>
         </nav>
       </WidthAdapter>
 
-      {showPostCreator && <PostCreator setShowPostCreator={setShowPostCreator} fetchFeed={fetchFeed} username={username} />}
+      {showPostCreator && <PostCreator setShowPostCreator={setShowPostCreator} username={username} />}
 
       <div className="flex flex-col w-full h-full bg-[#CACACA]">
-        <div className={`flex justify-center items-center w-full h-[70px] focus:outline-none bg-[#CACACA] border-b border-[#6E6E6E] flex-shrink-0 ${isHovered === "add" ? " bg-[#FFEA63] border-[#CACACA] " : ""}`}>
-          <button onClick={() => setShowPostCreator(true)} onMouseEnter={() => setIsHovered("add")} onMouseLeave={() => setIsHovered(null)} className="h-fit hover:text-gray-500/80">
-            <Image src={addDark} alt="My SVG Image" width={30} height={30} />
-          </button>
-        </div>
+        <button onClick={() => setShowPostCreator(!showPostCreator)} className="flex justify-center w-full h-[70px] hover:bg-[#FFEA63] focus:outline-none text-[#6E6E6E] bg-[#CACACA] border-b border-[#6E6E6E] hover:border-[#CACACA]">
+          <Image src={addDark} alt="My SVG Image" width={30} height={30} />
+        </button>
         {posts.map((post, i) => (
           <PostContainer post={post} setPosts={setPosts} key={i} />
         ))}
