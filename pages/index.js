@@ -1,10 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Container from "../components/width-adapter";
 import Layout from "../components/layout";
 import Head from "next/head";
 
 export default function Index() {
   const [inputValue, setInputValue] = useState("");
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -19,12 +24,20 @@ export default function Index() {
       <Head>
         <title>Void</title>
       </Head>
-      <Container>
-        <h1 className="w-full px-5 text-xl text-left bg-white">Void</h1>
+      <div className="h-full flex flex-col items-center justify-center gap-5 font-courier">
+        <h1 className="text-[#E9E7E7]">Void</h1>
         <form onSubmit={handleSubmit}>
-          <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} name="new-post" type="text" placeholder="Username" className="w-full px-5 py-3 border-2 border-gray-400/50 bg-inherit focus:outline-none" />
+          <input
+            ref={inputRef}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            name="new-post"
+            type="text"
+            className="w-full py-3 border-none bg-inherit focus:outline-none text-[8rem] text-[#FFEA63] text-center caret-custom-red"
+          />
         </form>
-      </Container>
+        <p className="text-[#E9E7E7]">Choose a username and start micro-journaling.</p>
+      </div>
     </Layout>
   );
 }

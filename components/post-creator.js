@@ -6,6 +6,7 @@ import closeIcon from "../public/icons/close-dark.svg";
 
 export default function PostCreator({ setShowPostCreator, fetchFeed, username }) {
   const [content, setContent] = useState("");
+  const [currentDateTime, setCurrentDateTime] = useState(null);
   const [isHovered, setIsHovered] = useState(null);
   const textareaRef = useRef(null);
 
@@ -18,6 +19,25 @@ export default function PostCreator({ setShowPostCreator, fetchFeed, username })
     textareaRef.current.style.height = "auto";
     textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
   };
+
+  useEffect(() => {
+    const updateDateTime = () => {
+      setCurrentDateTime(new Date());
+    };
+
+    updateDateTime();
+
+    const now = new Date();
+    const delay = 60000 - (now.getSeconds() * 1000 + now.getMilliseconds());
+
+    const timeout = setTimeout(() => {
+      updateDateTime();
+      const interval = setInterval(updateDateTime, 60000);
+      return () => clearInterval(interval);
+    }, delay);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -41,7 +61,19 @@ export default function PostCreator({ setShowPostCreator, fetchFeed, username })
   };
 
   return (
-    <div className="w-[100vw] h-[100vh] fixed pt-[8rem] flex flex-col bg-[#CACACA] border-b border-red">
+    <div className="w-[100vw] h-[100vh] fixed flex flex-col bg-[#CACACA] border-b border-red">
+      <WidthAdapter>
+        <nav className="flex justify-between items-end gap-5 w-full h-[8rem] px-5 py-[1.5rem] text-[#6E6E6E]">
+          <div className="flex gap-5">
+            <a href="/" className="">
+              Void
+            </a>
+            <span className="">{">"}</span>
+            <span className="">{username}</span>
+          </div>
+          <div>{currentDateTime ? currentDateTime.toLocaleDateString() + ", " + currentDateTime.toLocaleTimeString().slice(0, -3) : "Loading..."}</div>
+        </nav>
+      </WidthAdapter>
       <WidthAdapter>
         <form onSubmit={handleCreatePost}>
           <textarea ref={textareaRef} rows="1" value={content} onChange={handleChange} wrap="soft" className={"w-full p-5 bg-[#E9E7E7] border-none focus:outline-none resize-none"}></textarea>
@@ -49,12 +81,12 @@ export default function PostCreator({ setShowPostCreator, fetchFeed, username })
       </WidthAdapter>
       <div className="flex divide-x divide-[#E9E7E7] w-full h-[70px] fixed bottom-0 text-[#6E6E6E] border-t border-[#E9E7E7]">
         <div className={`flex-1 flex items-center justify-end pr-28 ${isHovered === "close" ? "bg-[#ff7563]" : ""}`}>
-          <button onClick={() => setShowPostCreator(false)} onMouseEnter={() => setIsHovered("close")} onMouseLeave={() => setIsHovered(null)} className="h-fit hover:text-gray-500/80">
+          <button onClick={() => setShowPostCreator(false)} onMouseEnter={() => setIsHovered("close")} onMouseLeave={() => setIsHovered(null)} className="cursor-pointer">
             <Image src={closeIcon} alt="My SVG Image" width={30} height={30} />
           </button>
         </div>
         <div className={`flex-1 flex items-center pl-28 ${isHovered === "check" ? "bg-[#FFEA63]" : ""}`}>
-          <button onClick={(e) => handleCreatePost(e)} onMouseEnter={() => setIsHovered("check")} onMouseLeave={() => setIsHovered(null)} className="hover:text-gray-500/80">
+          <button onClick={(e) => handleCreatePost(e)} onMouseEnter={() => setIsHovered("check")} onMouseLeave={() => setIsHovered(null)} className="cursor-pointer">
             <Image src={checkIcon} alt="My SVG Image" width={30} height={30} />
           </button>
         </div>

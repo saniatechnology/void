@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+/* @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
+
+body {
+  font-family: 'Courier', monospace;
+}
+
+::selection {
+  background: #0099ff; /* Custom background color */
+  color: #f0f0f0; /* Custom text color */
+}
+
+input {
+  caret-color: #FFEA63; /* Change the cursor color to red */
+}

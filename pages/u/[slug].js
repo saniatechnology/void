@@ -74,7 +74,7 @@ export default function rstFeed() {
 
       <div className="flex flex-col w-full h-full bg-[#CACACA]">
         <div className={`flex justify-center items-center w-full h-[70px] focus:outline-none bg-[#CACACA] border-b border-[#6E6E6E] flex-shrink-0 ${isHovered === "add" ? " bg-[#FFEA63] border-[#CACACA] " : ""}`}>
-          <button onClick={() => setShowPostCreator(true)} onMouseEnter={() => setIsHovered("add")} onMouseLeave={() => setIsHovered(null)} className="h-fit hover:text-gray-500/80">
+          <button onClick={() => setShowPostCreator(true)} onMouseEnter={() => setIsHovered("add")} onMouseLeave={() => setIsHovered(null)} className="h-fit hover:text-gray-500/80 cursor-pointer">
             <Image src={addDark} alt="My SVG Image" width={30} height={30} />
           </button>
         </div>
