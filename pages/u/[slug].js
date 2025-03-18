@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
-import Container from "../../components/width-adapter";
+import Link from "next/link";
 import Layout from "../../components/layout";
 import PostContainer from "../../components/post-container";
 import WidthAdapter from "../../components/width-adapter";
@@ -57,9 +57,9 @@ export default function rstFeed() {
       <WidthAdapter>
         <nav className="flex justify-between items-end gap-5 w-full h-[8rem] px-5 py-[1.5rem] text-[#E9E7E7]">
           <div className="flex gap-5">
-            <a href="/" className="">
+            <Link href="/" passHref>
               Void
-            </a>
+            </Link>
             <span className="">{">"}</span>
             <span className="">{username}</span>
           </div>
@@ -78,9 +78,7 @@ export default function rstFeed() {
             <Image src={addDark} alt="My SVG Image" width={30} height={30} />
           </button>
         </div>
-        {posts.map((post, i) => (
-          <PostContainer post={post} setPosts={setPosts} key={i} />
-        ))}
+        {posts && posts.map((post, i) => <PostContainer post={post} setPosts={setPosts} key={i} />)}
       </div>
     </Layout>
   );

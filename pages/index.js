@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { useRouter } from "next/router";
 import Container from "../components/width-adapter";
 import Layout from "../components/layout";
 import Head from "next/head";
@@ -6,6 +7,7 @@ import Head from "next/head";
 export default function Index() {
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef(null);
+  const router = useRouter();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -16,7 +18,7 @@ export default function Index() {
 
     if (inputValue === "") return;
 
-    window.location.href = `/u/${inputValue}`;
+    router.push(`/u/${inputValue}`);
   };
 
   return (
