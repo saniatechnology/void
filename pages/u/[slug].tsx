@@ -11,6 +11,7 @@ import addDark from "../../public/icons/add-dark.svg";
 
 interface Post {
   id: number;
+  username: string;
   content: string;
   date: string;
 }

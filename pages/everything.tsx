@@ -7,6 +7,7 @@ interface Post {
   id: string;
   content: string;
   username: string;
+  date: string;
 }
 
 export default function Everything() {
