@@ -1,9 +1,6 @@
 import React from "react";
 import Error from "next/error";
-
-interface MyErrorProps {
-  statusCode: number;
-}
+import { MyErrorProps } from "../types/error";
 
 class MyError extends React.Component<MyErrorProps> {
   static getInitialProps({ res, err }: { res?: any; err?: any }) {

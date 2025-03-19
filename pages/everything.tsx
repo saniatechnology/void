@@ -2,13 +2,7 @@ import { useEffect, useState } from "react";
 import Layout from "../components/layout";
 import Head from "next/head";
 import PostContainer from "../components/post-container";
-
-interface Post {
-  id: string;
-  content: string;
-  username: string;
-  date: string;
-}
+import { Post } from "../types/post";
 
 export default function Everything() {
   const [posts, setPosts] = useState<Post[]>([]);

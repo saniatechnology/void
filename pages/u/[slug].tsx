@@ -8,13 +8,7 @@ import PostContainer from "../../components/post-container";
 import WidthAdapter from "../../components/width-adapter";
 import PostCreator from "../../components/post-creator";
 import addDark from "../../public/icons/add-dark.svg";
-
-interface Post {
-  id: number;
-  username: string;
-  content: string;
-  date: string;
-}
+import { Post } from "../../types/post";
 
 export default function rstFeed() {
   const [username, setUsername] = useState<string>("");

@@ -3,12 +3,7 @@ import Image from "next/image";
 import WidthAdapter from "./width-adapter";
 import checkIcon from "../public/icons/check-dark.svg";
 import closeIcon from "../public/icons/close-dark.svg";
-
-interface PostCreatorProps {
-  setShowPostCreator: (value: boolean) => void;
-  fetchFeed: () => void;
-  username: string;
-}
+import { PostCreatorProps } from "../types/post";
 
 export default function PostCreator({ setShowPostCreator, fetchFeed, username }: PostCreatorProps) {
   const [content, setContent] = useState<string>("");
