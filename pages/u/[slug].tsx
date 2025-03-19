@@ -2,19 +2,20 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
-import Container from "../../components/width-adapter";
+import Link from "next/link";
 import Layout from "../../components/layout";
 import PostContainer from "../../components/post-container";
 import WidthAdapter from "../../components/width-adapter";
 import PostCreator from "../../components/post-creator";
 import addDark from "../../public/icons/add-dark.svg";
+import { Post } from "../../types/post";
 
 export default function rstFeed() {
-  const [username, setUsername] = useState("");
-  const [currentDateTime, setCurrentDateTime] = useState(null);
-  const [posts, setPosts] = useState([]);
-  const [showPostCreator, setShowPostCreator] = useState(false);
-  const [isHovered, setIsHovered] = useState(null);
+  const [username, setUsername] = useState<string>("");
+  const [currentDateTime, setCurrentDateTime] = useState<Date | null>(null);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [showPostCreator, setShowPostCreator] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -41,7 +42,7 @@ export default function rstFeed() {
   }, []);
 
   const fetchFeed = async () => {
-    const slug = router.query.slug;
+    const slug = router.query.slug as string;
     if (!slug) return;
     const result = await fetch(`/api/rst/${slug}`).then((res) => res.json());
     setUsername(slug);
@@ -57,16 +58,13 @@ export default function rstFeed() {
       <WidthAdapter>
         <nav className="flex justify-between items-end gap-5 w-full h-[8rem] px-5 py-[1.5rem] text-[#E9E7E7]">
           <div className="flex gap-5">
-            <a href="/" className="">
+            <Link href="/" passHref>
               Void
-            </a>
+            </Link>
             <span className="">{">"}</span>
             <span className="">{username}</span>
           </div>
           <div>{currentDateTime ? currentDateTime.toLocaleDateString() + ", " + currentDateTime.toLocaleTimeString().slice(0, -3) : "Loading..."}</div>
-          {/* <a href="/api/rst/cyberkwin/rss" className="">
-            RSS
-          </a> */}
         </nav>
       </WidthAdapter>
 
@@ -78,9 +76,7 @@ export default function rstFeed() {
             <Image src={addDark} alt="My SVG Image" width={30} height={30} />
           </button>
         </div>
-        {posts.map((post, i) => (
-          <PostContainer post={post} setPosts={setPosts} key={i} />
-        ))}
+        {posts && posts.map((post, i) => <PostContainer post={post} key={i} />)}
       </div>
     </Layout>
   );

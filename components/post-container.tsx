@@ -1,8 +1,9 @@
 // import { set } from "date-fns";
 import { use, useEffect, useRef, useState } from "react";
 import WidthAdapter from "./width-adapter";
+import { PostContainerProps } from "../types/post";
 
-export default function PostContainer({ post, setPosts }) {
+export default function PostContainer({ post }: PostContainerProps) {
   // const [content, setContent] = useState("");
   // const [isDeleted, setIsDeleted] = useState(false);
   // const textareaRef = useRef(null);

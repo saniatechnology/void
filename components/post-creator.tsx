@@ -1,14 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, ChangeEvent, FormEvent } from "react";
 import Image from "next/image";
 import WidthAdapter from "./width-adapter";
 import checkIcon from "../public/icons/check-dark.svg";
 import closeIcon from "../public/icons/close-dark.svg";
+import { PostCreatorProps } from "../types/post";
 
-export default function PostCreator({ setShowPostCreator, fetchFeed, username }) {
-  const [content, setContent] = useState("");
-  const [currentDateTime, setCurrentDateTime] = useState(null);
-  const [isHovered, setIsHovered] = useState(null);
-  const textareaRef = useRef(null);
+export default function PostCreator({ setShowPostCreator, fetchFeed, username }: PostCreatorProps) {
+  const [content, setContent] = useState<string>("");
+  const [currentDateTime, setCurrentDateTime] = useState<Date | null>(null);
+  const [isHovered, setIsHovered] = useState<"close" | "check" | null>(null);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
     setHeight();
@@ -39,12 +40,12 @@ export default function PostCreator({ setShowPostCreator, fetchFeed, username })
     return () => clearTimeout(timeout);
   }, []);
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     event.preventDefault();
     setContent(event.target.value);
   };
 
-  const handleCreatePost = async (event) => {
+  const handleCreatePost = async (event: FormEvent) => {
     event.preventDefault();
 
     if (content === "") {
@@ -76,7 +77,7 @@ export default function PostCreator({ setShowPostCreator, fetchFeed, username })
       </WidthAdapter>
       <WidthAdapter>
         <form onSubmit={handleCreatePost}>
-          <textarea ref={textareaRef} rows="1" value={content} onChange={handleChange} wrap="soft" className={"w-full p-5 bg-[#E9E7E7] border-none focus:outline-none resize-none"}></textarea>
+          <textarea ref={textareaRef} rows={1} value={content} onChange={handleChange} wrap="soft" className={"w-full p-5 bg-[#E9E7E7] border-none focus:outline-none resize-none"}></textarea>
         </form>
       </WidthAdapter>
       <div className="flex divide-x divide-[#E9E7E7] w-full h-[70px] fixed bottom-0 text-[#6E6E6E] border-t border-[#E9E7E7]">
