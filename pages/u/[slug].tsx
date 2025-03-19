@@ -9,12 +9,18 @@ import WidthAdapter from "../../components/width-adapter";
 import PostCreator from "../../components/post-creator";
 import addDark from "../../public/icons/add-dark.svg";
 
+interface Post {
+  id: number;
+  content: string;
+  date: string;
+}
+
 export default function rstFeed() {
-  const [username, setUsername] = useState("");
-  const [currentDateTime, setCurrentDateTime] = useState(null);
-  const [posts, setPosts] = useState([]);
-  const [showPostCreator, setShowPostCreator] = useState(false);
-  const [isHovered, setIsHovered] = useState(null);
+  const [username, setUsername] = useState<string>("");
+  const [currentDateTime, setCurrentDateTime] = useState<Date | null>(null);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [showPostCreator, setShowPostCreator] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -41,7 +47,7 @@ export default function rstFeed() {
   }, []);
 
   const fetchFeed = async () => {
-    const slug = router.query.slug;
+    const slug = router.query.slug as string;
     if (!slug) return;
     const result = await fetch(`/api/rst/${slug}`).then((res) => res.json());
     setUsername(slug);
@@ -64,9 +70,6 @@ export default function rstFeed() {
             <span className="">{username}</span>
           </div>
           <div>{currentDateTime ? currentDateTime.toLocaleDateString() + ", " + currentDateTime.toLocaleTimeString().slice(0, -3) : "Loading..."}</div>
-          {/* <a href="/api/rst/cyberkwin/rss" className="">
-            RSS
-          </a> */}
         </nav>
       </WidthAdapter>
 
@@ -78,7 +81,7 @@ export default function rstFeed() {
             <Image src={addDark} alt="My SVG Image" width={30} height={30} />
           </button>
         </div>
-        {posts && posts.map((post, i) => <PostContainer post={post} setPosts={setPosts} key={i} />)}
+        {posts && posts.map((post, i) => <PostContainer post={post} key={i} />)}
       </div>
     </Layout>
   );

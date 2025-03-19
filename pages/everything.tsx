@@ -3,8 +3,14 @@ import Layout from "../components/layout";
 import Head from "next/head";
 import PostContainer from "../components/post-container";
 
-export default function Index() {
-  const [posts, setPosts] = useState([]);
+interface Post {
+  id: string;
+  content: string;
+  username: string;
+}
+
+export default function Everything() {
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     fetchFeed();
@@ -23,7 +29,7 @@ export default function Index() {
       <h1 className="w-full px-5 text-xl text-left bg-white">Void/everything</h1>
       <div className="flex flex-col justify-between">
         {posts.map((post) => (
-          <PostContainer post={post} />
+          <PostContainer key={post.id} post={post} />
         ))}
       </div>
     </Layout>

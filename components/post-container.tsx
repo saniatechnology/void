@@ -2,7 +2,17 @@
 import { use, useEffect, useRef, useState } from "react";
 import WidthAdapter from "./width-adapter";
 
-export default function PostContainer({ post, setPosts }) {
+interface Post {
+  username: string;
+  date: string;
+  content: string;
+}
+
+interface PostContainerProps {
+  post: Post;
+}
+
+export default function PostContainer({ post }: PostContainerProps) {
   // const [content, setContent] = useState("");
   // const [isDeleted, setIsDeleted] = useState(false);
   // const textareaRef = useRef(null);

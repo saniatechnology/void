@@ -1,8 +1,12 @@
 import React from "react";
 import Error from "next/error";
 
-class MyError extends React.Component {
-  static getInitialProps({ res, err }) {
+interface MyErrorProps {
+  statusCode: number;
+}
+
+class MyError extends React.Component<MyErrorProps> {
+  static getInitialProps({ res, err }: { res?: any; err?: any }) {
     const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
     return { statusCode };
   }

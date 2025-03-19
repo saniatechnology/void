@@ -1,21 +1,19 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, FormEvent } from "react";
 import { useRouter } from "next/router";
-import Container from "../components/width-adapter";
 import Layout from "../components/layout";
 import Head from "next/head";
 
 export default function Index() {
-  const [inputValue, setInputValue] = useState("");
-  const inputRef = useRef(null);
+  const [inputValue, setInputValue] = useState<string>("");
+  const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
   useEffect(() => {
-    inputRef.current.focus();
+    inputRef.current?.focus();
   }, []);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-
     if (inputValue === "") return;
 
     router.push(`/u/${inputValue}`);
