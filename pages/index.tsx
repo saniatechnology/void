@@ -27,7 +27,9 @@ export default function Index() {
       <div className="h-full flex flex-col items-center justify-center gap-5 font-courier">
         <h1 className="text-[#E9E7E7]">Void</h1>
         <form onSubmit={handleSubmit} role="form">
-          <label id="username-label" htmlFor="username-input" className="sr-only">Username</label>
+          <label id="username-label" htmlFor="username-input" className="sr-only">
+            Username
+          </label>
           <input
             ref={inputRef}
             value={inputValue}

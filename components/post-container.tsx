@@ -48,10 +48,10 @@ export default function PostContainer({ post }: PostContainerProps) {
   // };
 
   return (
-    <div className="w-full flex flex-col justify-between gap-5 bg-[#CACACA]  border-b border-[#6E6E6E]">
+    <div className="w-full flex flex-col justify-between gap-5 bg-[#CACACA]  border-b border-[#afafaf]">
       <WidthAdapter>
         <div className={"w-full flex flex-col gap-3 pt-5 pb-6 cursor-default"}>
-          <div className="w-full flex justify-between px-5 text-[#6E6E6E]">
+          <div className="w-full flex justify-between px-5 text-[#828282]">
             <p>{post.username}</p>
             <p>{new Date(Number(post.date)).toLocaleString().slice(0, -3)}</p>
           </div>

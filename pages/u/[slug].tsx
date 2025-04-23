@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
@@ -10,7 +10,7 @@ import PostCreator from "../../components/post-creator";
 import addDark from "../../public/icons/add-dark.svg";
 import { Post } from "../../types/post";
 
-export default function rstFeed() {
+export default function RstFeed() {
   const [username, setUsername] = useState<string>("");
   const [currentDateTime, setCurrentDateTime] = useState<Date | null>(null);
   const [posts, setPosts] = useState<Post[]>([]);
@@ -18,9 +18,17 @@ export default function rstFeed() {
   const [isHovered, setIsHovered] = useState<string | null>(null);
   const router = useRouter();
 
+  const fetchFeed = useCallback(async () => {
+    const slug = router.query.slug as string;
+    if (!slug) return;
+    const result = await fetch(`/api/rst/${slug}`).then((res) => res.json());
+    setUsername(slug);
+    setPosts(result.posts);
+  }, [router.query.slug]);
+
   useEffect(() => {
     fetchFeed();
-  }, [router.query.slug]);
+  }, [fetchFeed]);
 
   useEffect(() => {
     const updateDateTime = () => {
@@ -40,14 +48,6 @@ export default function rstFeed() {
 
     return () => clearTimeout(timeout);
   }, []);
-
-  const fetchFeed = async () => {
-    const slug = router.query.slug as string;
-    if (!slug) return;
-    const result = await fetch(`/api/rst/${slug}`).then((res) => res.json());
-    setUsername(slug);
-    setPosts(result.posts);
-  };
 
   return (
     <Layout>
@@ -71,7 +71,7 @@ export default function rstFeed() {
       {showPostCreator && <PostCreator setShowPostCreator={setShowPostCreator} fetchFeed={fetchFeed} username={username} />}
 
       <div className="flex flex-col w-full h-full bg-[#CACACA]">
-        <div className={`flex justify-center items-center w-full h-[70px] focus:outline-none bg-[#CACACA] border-b border-[#6E6E6E] flex-shrink-0 ${isHovered === "add" ? " bg-[#FFEA63] border-[#CACACA] " : ""}`}>
+        <div className={`flex justify-center items-center w-full h-[70px] focus:outline-none bg-[#CACACA] border-b flex-shrink-0 ${isHovered === "add" ? " bg-[#FFEA63] border-[#CACACA] " : "border-[#afafaf]"}`}>
           <button onClick={() => setShowPostCreator(true)} onMouseEnter={() => setIsHovered("add")} onMouseLeave={() => setIsHovered(null)} className="h-fit hover:text-gray-500/80 cursor-pointer">
             <Image src={addDark} alt="My SVG Image" width={30} height={30} />
           </button>
