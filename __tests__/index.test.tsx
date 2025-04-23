@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { useRouter } from "next/router";
-import Index from "./index";
+import Index from "@/pages";
 
 // Mock the Next.js router
 jest.mock("next/router", () => ({
