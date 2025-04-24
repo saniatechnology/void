@@ -2,9 +2,11 @@ import { sql } from "@vercel/postgres";
 import { v4 as uuidv4 } from "uuid";
 
 export default async function handler(request, response) {
+  if (request.method !== "POST") {
+    return response.status(405).json({ error: "Method not allowed" });
+  }
   try {
-    const username = request.query.username;
-    const content = request.query.content;
+    const { username, content } = request.body;
     const date = Date.parse(new Date());
     const id = uuidv4();
     if (!username || !content) throw new Error("Username or content missing.");

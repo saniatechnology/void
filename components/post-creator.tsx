@@ -54,7 +54,17 @@ export default function PostCreator({ setShowPostCreator, fetchFeed, username }:
       return;
     }
 
-    const result = await fetch(`/api/rst/post?username=${username}&content=${content}`);
+    const result = await fetch("/api/rst/post", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        content,
+      }),
+    });
+
     if (result.ok) {
       fetchFeed();
       setContent("");

@@ -55,7 +55,7 @@ export default function PostContainer({ post }: PostContainerProps) {
             <p>{post.username}</p>
             <p>{new Date(Number(post.date)).toLocaleString().slice(0, -3)}</p>
           </div>
-          <div className={"w-full p-5 bg-[#E9E7E7]"}>{post.content}</div>
+          <div className={"w-full p-5 bg-[#E9E7E7] whitespace-pre-wrap"}>{post.content}</div>
           {/* <form onSubmit={handleSubmit}>
             <textarea ref={textareaRef} rows="1" value={content} onChange={handleChange} wrap="soft" className={"w-full p-5 bg-[#E9E7E7] border-none focus:outline-none resize-none"}></textarea>
           </form> */}
