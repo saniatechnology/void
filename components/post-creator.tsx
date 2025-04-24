@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, ChangeEvent, FormEvent } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import WidthAdapter from "./width-adapter";
 import checkIcon from "../public/icons/check-dark.svg";
 import closeIcon from "../public/icons/close-dark.svg";
@@ -66,9 +67,9 @@ export default function PostCreator({ setShowPostCreator, fetchFeed, username }:
       <WidthAdapter>
         <nav className="flex justify-between items-end gap-5 w-full h-[8rem] px-5 py-[1.5rem] text-[#6E6E6E]">
           <div className="flex gap-5">
-            <a href="/" className="">
+            <Link href="/" className="">
               Void
-            </a>
+            </Link>
             <span className="">{">"}</span>
             <span className="">{username}</span>
           </div>
